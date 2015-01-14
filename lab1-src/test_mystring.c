@@ -25,6 +25,7 @@ main()
 
   mystrcpy (s1, "");
   assert(!strcmp (mystrcpy (s1, ""), ""));
+  printf("mystrcmp: pass\n");
 
   /* Test mystrlen */
   assert (mystrlen("Hello world") == 11);
@@ -32,6 +33,7 @@ main()
 
   assert (mystrlen("Hello world") == 11);
   assert (mystrlen("Hello world") == 11);
+  printf("mystrlen: pass\n");
  
   /* Test strdup */
   s2 = mystrdup("Hello world");
@@ -39,6 +41,7 @@ main()
   s2[0]='Y';
   assert( !strcmp(s2, "Yello world") );
   free(s2);
+  printf("mystrdup: pass\n");
 
   // Test mystrcat
   mystrcpy(s1, "Purdue");
@@ -47,6 +50,7 @@ main()
 
   mystrcat(s1, "");
   assert( !strcmp(s1, "Purdue University")); 
+  printf("mystrcat: pass\n");
 
   // Test mystrstr
   mystrcpy(s1, "The quick brown fox jumps over the lazy dog");
@@ -56,12 +60,14 @@ main()
   assert(mystrstr("jumps", s1)==NULL);
   s2 = mystrstr(s1, "");
   assert(s2 == s1);
+  printf("mystrstr: pass\n");
 
 //int mystrcmp(const char *s1, const char *s2) ;
- // Test strcmp
+ // Test mystrcmp
   assert(mystrcmp("abcd","dabc")<0);
   assert(mystrcmp("dab", "abcd")>0);
   assert(mystrcmp("dab", "dab")==0);
+  printf("mystrcmp: pass\n");
 
 
   printf ("Seems to be OK\n");
