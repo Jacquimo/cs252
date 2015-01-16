@@ -1,3 +1,5 @@
+#define EXCLUDE 0
+
 //an item in the list
 typedef struct ListNode {
   int _value;

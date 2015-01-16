@@ -1,3 +1,4 @@
+#ifndef EXCLUDE
 #include "List.h"
 
 class Queue : public List {
