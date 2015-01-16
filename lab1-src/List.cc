@@ -6,9 +6,6 @@
 #include "List.h"
 #include <stdlib.h>
 
-Node* createNode(int);
-Node* createNode(int, Node*);
-
 //
 // Inserts a new element with value "val" in
 // ascending order.
@@ -171,11 +168,11 @@ List::~List()
 	}
 }
 
-Node* createNode(int val) {
+Node* List::createNode(int val) {
 	return createNode(val, NULL);
 }
 
-Node* createNode(int val, Node* child) {
+Node* List::createNode(int val, Node* child) {
 	Node* insert = (Node*)malloc(sizeof(Node));
 	insert->_value = val;
 	insert->_next = child;

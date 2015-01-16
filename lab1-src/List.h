@@ -16,6 +16,8 @@ public:
   int lookup( int _value );
   int remove( int val );
   void print();
+  static Node* createNode(int val);
+  static Node* createNode(int val, Node* child);
   List();
   ~List();
 };
