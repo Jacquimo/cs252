@@ -120,11 +120,15 @@ char* allocate_atleast_10bytes(char *ptr, unsigned int nbytes) {
   return ptr;
 }
 
+
+int compInt(const void* first, const void* sec) {
+  return (*(int*)first) - (*(int*)sec);
+}
 /* The following function computes the 
    median of an array of size n */
 
 float median(int *arr, int len) {
-  int *arr2 = new int[len];
+  /*int *arr2 = new int[len];
   for(int i = 0; i < len; i++)
     arr2[i] = arr[i];
   
@@ -151,6 +155,10 @@ float median(int *arr, int len) {
   delete[] ptr2;
 
   return result;
+  */
+
+  qsort(arr, len, sizeof(int), &compInt);
+  return arr[len / 2];
 }
 
 
@@ -158,6 +166,7 @@ float median(int *arr, int len) {
  */
 void strdup2(char* str) {
   int len = strlen(str);
+  str = (char*)realloc(str, sizeof(char) * 2 * len + 1);
   strcpy(str + len, str);
 }
 
