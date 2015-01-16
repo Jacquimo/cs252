@@ -32,7 +32,7 @@ CCFLAGS= -g -std=gnu99
 # The dependencies of "all" are the files that we want to build.
 #
 
-all: test_mystring test_list test_mysort test
+all: test_mystring test_list test_mysort test pitfalls
 
 # Compile mystring.o if necessary
 mystring.o : mystring.c
@@ -84,6 +84,14 @@ test:
 	echo && \
 	echo ------ Test Results ----- && \
 	cat test_results 
+
+
+pitfalls.o: pitfalls.cpp
+	$(CXX) -c $(CCFLAGS) pitfalls.cpp
+
+pitfalls: pitfalls.o
+	$(CXX) -o pitfalls pitfalls.o
+
 
 clean:
 	rm -f core *.o test_mystring test_list test_mysort test_results

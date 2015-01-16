@@ -13,10 +13,9 @@ You are required to identify these pitfalls and fix them*/
 int *add_vectors(int *v1, int n1, int *v2, int n2) {
   int *result;
   if(n1 != n2) {
-    delete[] result;
     return NULL;
   }
-  result = new int[n1];
+  result = (int*)malloc(sizeof(int) * n1);
   for(int i = 0; i < n1; i++)
     result[i] = v1[i] + v2[i];
   return result;
@@ -30,8 +29,10 @@ int* divide_vectors(int *v1, int *v2, int n) {
   for(int i = 0; i < n; i++) {
     if(v2[i] != 0)
       result[i] = v1[i] / v2[i];
-    else
+    else {
+      delete[] result;
       return NULL;
+    }
   }
   return result;
 }
