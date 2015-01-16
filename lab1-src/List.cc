@@ -123,7 +123,13 @@ List::remove( int val )
 void
 List::print()
 {
-  // Complete procedure 
+	Node* node = _head;
+	printf("[");
+	while (node != NULL) {
+		printf("%d, ", node->_value);
+		node = node->_next;
+	}
+	printf("]\n");
 }
 
 //

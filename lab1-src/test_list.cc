@@ -37,6 +37,8 @@ main( int argc, char ** argv )
   assert( l.remove( 100 ) == 0 );
   assert( l.remove( 100 ) == -1 );
 
+  l.print();
+
   // Make sure that the other elements are still there
   assert ( l.lookup( 45) == 0 );
   assert ( l.lookup( 23) == 0 );
