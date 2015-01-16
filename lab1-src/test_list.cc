@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <assert.h>
 
-#include "List.h"
+//#include "List.h"
+#include "Queue.h"
 
 int a[] = {45, 23, 78, 12, 100, 1, 100, 34, 90, 78 };
 
@@ -12,6 +13,8 @@ main( int argc, char ** argv )
 {
   List l;
   int i;
+
+  Queue q;
 
   int nelements = sizeof( a )/ sizeof( int );
   for ( i = 0; i < nelements; i++ ) {

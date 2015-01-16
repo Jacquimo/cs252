@@ -1,12 +1,9 @@
 #include "List.h"
 
-class Queue : List {
-	void enqueue(Node* node);
-	Node* dequeue(Node* node);
-
+class Queue : public List {
 public:
 	void enqueue(int val);
-	int dequeue(int val);
+	int dequeue();
 	Queue();
 	~Queue();
 };

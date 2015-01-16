@@ -5,7 +5,7 @@
 # in a Makefile
 CC=gcc
 CXX=g++
-CCFLAGS= -g -std=c99
+CCFLAGS= -g -std=gnu99
 
 # A rule in Makefile has the form:
 #
@@ -51,10 +51,10 @@ List.o: List.cc
 	$(CXX) -c $(CCFLAGS) List.cc
 
 test_list.o: test_list.cc
-	$(CXX) -c $(CCFLAGS) test_list.cc
+	$(CXX) -c $(CCFLAGS) test_list.cc 
 
 test_list: test_list.o List.o
-	$(CXX) -o test_list test_list.o List.o
+	$(CXX) -o test_list test_list.o List.o Queue.cc
 
 # Build test_mysort
 

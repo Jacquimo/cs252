@@ -4,12 +4,21 @@
 // Publicly available method to add an element to the queue
 //
 void Queue::enqueue(int val) {
-	enqueue(createNode(val));
+	append(val);
 }
 
-//
-// Private method that adds a node to the underlying List structure
-//
-void Queue::enqueue(Node* node) {
-	append(node);
+int Queue::dequeue(int val) {
+	Node* node = _head;
+	_head = _head->_next;
+	int ret = node->._value;
+	free(node);
+	return ret;
+}
+
+Queue::Queue() {
+
+}
+
+Queue::~Queue() {
+
 }
