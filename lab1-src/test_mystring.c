@@ -55,10 +55,15 @@ main()
   // Test mystrstr
   mystrcpy(s1, "The quick brown fox jumps over the lazy dog");
   s2 = mystrstr(s1, "jumps");
+  //printf("%s\n", s2);
   assert(!strcmp(s2, "jumps over the lazy dog")); 
   assert(mystrstr(s1, "Hello")==NULL);
   assert(mystrstr("jumps", s1)==NULL);
   s2 = mystrstr(s1, "");
+  /*if (s2 == NULL)
+    printf("null\n");
+  else
+    printf("%s\n", s2);*/
   assert(s2 == s1);
   printf("mystrstr: pass\n");
 

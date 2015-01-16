@@ -5,6 +5,13 @@
 #include <stdio.h>
 #include "List.h"
 
+
+class List {
+
+};
+
+
+
 //
 // Inserts a new element with value "val" in
 // ascending order.
@@ -38,7 +45,7 @@ List::prepend( int val )
 // Removes an element with value "val" from List
 // Returns 0 if succeeds or -1 if it fails
 int 
-List:: remove( int val )
+List::remove( int val )
 {
   // Complete procedure
   return 0;

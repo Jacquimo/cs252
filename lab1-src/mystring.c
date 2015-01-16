@@ -1,4 +1,6 @@
 #include <sys/types.h>
+#include <stdlib.h>
+#include "string.h"
 
 /*
  * Implement the following string procedures.
@@ -57,25 +59,42 @@ char *mystrcat(char * s1, const char * s2)
 
 char *mystrstr(char * s1, const char * s2)
 {
-	int i = 0;
-	while (*(s1 + i)) {
+	//return strstr(s1, s2);
+
+	if (s1 == NULL || *s1 == '\0')
+		return NULL;
+
+	if (*s2 == '\0')
+		return s1;
+
+	for (int i = 0; *(s1 + i); ++i)
 		if (*(s1 + i) == *s2) {
-			int j = 1;
-			while (*(s1 + i + j) && *(s2 + j) && *(s1 + i + j) == *(s2 + j))
+			int j = 0;
+			while (*(s1 + i + j) == *(s2 + j) && *(s1 + i + j) && *(s2 + j))
 				++j;
 
 			if (*(s2 + j) == '\0')
 				return s1 + i;
+
+			if (*(s1 + i + j) == '\0')
+				return NULL;
+
 			i = i + j;
 		}
-
-		++i;
-	}
 
 	return NULL;
 }
 
 int mystrcmp(const char *s1, const char *s2) {
-  /* Complete procedure */
+	int i = 0;
+	while (*(s1 + i) == *(s2 + i)) {
+		if (*(s1 + i) == '\0')
+			break;
+		if (*(s2 + i) == '\0')
+			break;
+		++i;
+	}
+
+	return *s1 - *s2;
 }
 

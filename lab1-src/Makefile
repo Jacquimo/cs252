@@ -1,10 +1,11 @@
 
+
 # Define what compiler to use and the flags.
 # This is the way you define and assign variables
 # in a Makefile
 CC=gcc
 CXX=g++
-CCFLAGS= -g
+CCFLAGS= -g -std=c99
 
 # A rule in Makefile has the form:
 #
