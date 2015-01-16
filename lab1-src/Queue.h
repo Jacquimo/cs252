@@ -1,5 +1,6 @@
 #ifndef EXCLUDE
 #include "List.h"
+#endif
 
 class Queue : public List {
 public:

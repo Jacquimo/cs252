@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "Queue.h"
 
 //
@@ -7,18 +8,10 @@ void Queue::enqueue(int val) {
 	append(val);
 }
 
-int Queue::dequeue(int val) {
-	Node* node = _head;
-	_head = _head->_next;
-	int ret = node->._value;
-	free(node);
-	return ret;
+int Queue::dequeue() {
+	remove(_head->_value);
 }
 
-Queue::Queue() {
+Queue::Queue() { }
 
-}
-
-Queue::~Queue() {
-
-}
+Queue::~Queue() { }

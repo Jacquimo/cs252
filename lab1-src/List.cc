@@ -3,7 +3,9 @@
 //
 
 #include <stdio.h>
+#ifndef EXCLUDE
 #include "List.h"
+#endif
 #include <stdlib.h>
 
 //

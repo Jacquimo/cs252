@@ -15,6 +15,9 @@ main( int argc, char ** argv )
   int i;
 
   Queue q;
+  q.enqueue(10);
+  q.dequeue();
+  q.print();
 
   int nelements = sizeof( a )/ sizeof( int );
   for ( i = 0; i < nelements; i++ ) {
