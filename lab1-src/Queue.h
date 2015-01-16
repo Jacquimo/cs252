@@ -2,11 +2,11 @@
 
 class Queue : List {
 	void enqueue(Node* node);
-	void dequeue(Node* node);
+	Node* dequeue(Node* node);
 
 public:
 	void enqueue(int val);
-	void dequeue(int val);
+	int dequeue(int val);
 	Queue();
 	~Queue();
 };
