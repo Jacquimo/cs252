@@ -1,3 +1,3 @@
-test_mystring Failed
-test_list     Failed
-test_mysort   Failed
+test_mystring OK
+test_list     OK
+test_mysort   OK

@@ -57,6 +57,14 @@ test_list: test_list.o List.o
 	$(CXX) -o test_list test_list.o List.o Queue.cc Stack.cc
 
 # Build test_mysort
+test_mysort.o: test_mysort.cc
+	$(CC) -c $(CCFLAGS) test_mysort.cc
+
+mysort.o: mysort.cc
+	$(CC) -c $(CCFLAGS) mysort.cc
+
+test_mysort: test_mysort.o mysort.o
+	$(CXX) -o test_mysort mysort.o test_mysort.o
 
 #
 # Add the rules to build test_mysort here
