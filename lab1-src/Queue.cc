@@ -9,7 +9,9 @@ void Queue::enqueue(int val) {
 }
 
 int Queue::dequeue() {
-	remove(_head->_value);
+	int ret = _head->_value;
+	remove(ret);
+	return ret;
 }
 
 Queue::Queue() { }

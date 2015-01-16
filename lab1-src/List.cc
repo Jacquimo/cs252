@@ -70,6 +70,7 @@ void
 List::prepend( int val )
 {
 	Node* insert = createNode(val, _head);
+	insert->_next = _head;
 	_head = insert;
 	if (tail == NULL)
 		tail = insert;

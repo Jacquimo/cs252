@@ -54,7 +54,7 @@ test_list.o: test_list.cc
 	$(CXX) -c $(CCFLAGS) test_list.cc 
 
 test_list: test_list.o List.o
-	$(CXX) -o test_list test_list.o List.o Queue.cc
+	$(CXX) -o test_list test_list.o List.o Queue.cc Stack.cc
 
 # Build test_mysort
 

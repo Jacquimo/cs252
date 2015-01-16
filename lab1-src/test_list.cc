@@ -5,6 +5,7 @@
 
 //#include "List.h"
 #include "Queue.h"
+#include "Stack.h"
 
 int a[] = {45, 23, 78, 12, 100, 1, 100, 34, 90, 78 };
 
@@ -15,9 +16,16 @@ main( int argc, char ** argv )
   int i;
 
   Queue q;
-  q.enqueue(10);
-  q.dequeue();
+  q.enqueue(10);  q.enqueue(65);  q.enqueue(2);
   q.print();
+  printf("%d\n", q.dequeue());
+  q.print();
+
+  Stack s;
+  s.push(15); s.push(73); s.push(51);
+  s.print();
+  printf("%d\n", s.pop());
+  s.print();
 
   int nelements = sizeof( a )/ sizeof( int );
   for ( i = 0; i < nelements; i++ ) {
