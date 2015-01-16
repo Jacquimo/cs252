@@ -4,6 +4,10 @@
 
 #include <stdio.h>
 #include "List.h"
+#include <stdlib.h>
+
+Node* createNode(int);
+Node* createNode(int, Node*);
 
 //
 // Inserts a new element with value "val" in
@@ -12,7 +16,32 @@
 void
 List::insertSorted( int val )
 {
-  // Complete procedure 
+	Node* insert = createNode(val);
+	// Check starting conditions and check for nulls
+	if (_head == NULL || insert->_value < _head->_value) {
+		prepend(val);
+		free(insert);
+		return;
+	}
+
+	Node* first = _head;
+	Node* next = first->_next;
+	
+	// This assumes that the list is already in sorted order
+	while (next != NULL) {
+		if (insert->_value < next->_value) {
+			insert->_next = next;
+			first->_next = insert;
+			return;
+		}
+
+		first = next;
+		next = first->_next;
+	}
+
+	// If we have gone through all of the elements, just add this to the end
+	this->append(val);
+	free(insert); // need this line, as append will allocate its own memory
 }
 
 //
@@ -22,7 +51,16 @@ List::insertSorted( int val )
 void
 List::append( int val )
 {
-  // Complete procedure 
+	Node* insert = createNode(val);
+
+	if (_head == NULL) {
+		_head = insert;
+		tail = insert;
+		return;
+	}
+	// Because of the above statement, "tail" will never be NULL 
+	tail->_next = insert;
+	tail = insert;
 }
 
 //
@@ -32,7 +70,10 @@ List::append( int val )
 void
 List::prepend( int val )
 {
-  // Complete procedure 
+	Node* insert = createNode(val, _head);
+	_head = insert;
+	if (tail == NULL)
+		tail = insert;
 }
 
 // Removes an element with value "val" from List
@@ -40,8 +81,42 @@ List::prepend( int val )
 int 
 List::remove( int val )
 {
-  // Complete procedure
-  return 0;
+	if (_head == NULL)
+		return -1;
+	
+	// Check if _head is the node
+	if (_head->_value == val) {
+		Node* rem = _head;
+		_head = _head->_next;
+		free(rem);
+		return 0;
+	}
+
+	Node* first = _head;
+	Node* next = first->_next;
+
+	// Loop through until "next" becomes the tail element
+	while (next->_next != NULL) {
+		if (next->_value == val) {
+			Node* rem = next;
+			first->_next = next->_next;
+			free(rem);
+			return 0;
+		}
+
+		first = next;
+		next = first->_next;
+	}
+
+	// Check the tail element
+	if (tail->_value == val) {
+		Node* rem = tail;
+		tail = first;
+		free(rem);
+		return 0;
+	}
+
+	return -1;
 }
 
 // Prints The elements in the list. 
@@ -66,7 +141,8 @@ List::lookup(int val)
 //
 List::List()
 {
-  // Complete procedure 
+	_head = NULL;
+	tail = NULL;
 }
 
 //
@@ -74,6 +150,23 @@ List::List()
 //
 List::~List()
 {
-  // Complete procedure 
+	Node* node = _head;
+	while (node != NULL) {
+		Node* temp = node->_next;
+		free(node);
+		node = temp;
+	}
+}
+
+Node* createNode(int val) {
+	return createNode(val, NULL);
+}
+
+Node* createNode(int val, Node* child) {
+	Node* insert = (Node*)malloc(sizeof(Node));
+	insert->_value = val;
+	insert->_next = child;
+
+	return insert;
 }
 

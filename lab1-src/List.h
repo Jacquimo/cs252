@@ -8,6 +8,7 @@ class List {
 public:
   //Head of list
   ListNode * _head;
+  Node* tail;
   
   void insertSorted( int val ) ;
   void append (int val);
