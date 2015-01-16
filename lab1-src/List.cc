@@ -40,7 +40,7 @@ List::insertSorted( int val )
 	}
 
 	// If we have gone through all of the elements, just add this to the end
-	this->append(val);
+	append(val);
 	free(insert); // need this line, as append will allocate its own memory
 }
 
@@ -132,8 +132,14 @@ List::print()
 int
 List::lookup(int val)
 {
-  // Complete procedure 
-  return 0;
+	Node* first = _head;
+	while (first != NULL) {
+		if (first->_value == val)
+			return 0;
+		first = first->_next;
+	}
+
+	return -1;
 }
 
 //
