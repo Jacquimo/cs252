@@ -44,13 +44,12 @@ the result in a temp vector.
 3. it sums the values of the temp vector and returns the sum
 */
 int sumOfSquares(int *v1, int *v2, int n) {
-  int * temp = new int[n];
+  int temp[n];
   for(int i = 0; i < n; i++)
     temp[i] = v1[i] * v2[i];
   int sum = 0;
   for(int i = 0; i < n; i++)
     sum += temp[i];
-  delete temp;
   return sum;
 }
 
