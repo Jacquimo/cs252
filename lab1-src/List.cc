@@ -5,13 +5,6 @@
 #include <stdio.h>
 #include "List.h"
 
-
-class List {
-
-};
-
-
-
 //
 // Inserts a new element with value "val" in
 // ascending order.

@@ -1,8 +1,8 @@
 //an item in the list
-struct ListNode {
+typedef struct ListNode {
   int _value;
   ListNode * _next;
-};
+} Node;
 
 class List {
 public:
