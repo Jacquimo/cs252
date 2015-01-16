@@ -113,6 +113,7 @@ List::remove( int val )
 		Node* rem = tail;
 		tail = first;
 		free(rem);
+		tail->_next = NULL;
 		return 0;
 	}
 
