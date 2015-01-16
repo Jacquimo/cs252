@@ -75,9 +75,15 @@ into str2
 */
 
 void strncp(char* str1, char* str2, int len) {
-  for(int i = 0; i <= len; i++)
+  /*for(int i = 0; i <= len; i++)
     *str2++ = *str1++;
   *str2 = 0; // null character
+  */
+
+  int i = 0;
+  for (; i < len; ++i)
+    str2[i] = str1[i];
+  str2[i] = '\0';
 }
 
 /* The following function sums two vectors and returns
@@ -86,8 +92,8 @@ int* sum_vectors(int *v1, int* v2, int nelements) {
   int *vsum = new int[nelements];
   for(int i = 0; i < nelements; i++)
      vsum[i] = v1[i] + v2[i];
-   delete[] vsum;
-   return vsum;
+  /*delete[] vsum;*/
+  return vsum;
 }
 
 /*the following function allocates at least 10 bytes of memory
@@ -101,10 +107,17 @@ ptr[5] = 'v';
 You can change the type of the parameters, how they are used, return value
 or the way the caller calls this function to solve the problem.:
 */
-void allocate_atleast_10bytes(char *ptr, unsigned int nbytes) {
+
+/*void allocate_atleast_10bytes(char *ptr, unsigned int nbytes) {
   if(nbytes < 10)
     nbytes = 10;
   ptr = new char[nbytes]; //the user is responsible for freeing memory
+}*/
+char* allocate_atleast_10bytes(char *ptr, unsigned int nbytes) {
+  if(nbytes < 10)
+    nbytes = 10;
+  ptr = (char*)malloc(sizeof(char) * nbytes); //the user is responsible for freeing memory
+  return ptr;
 }
 
 /* The following function computes the 
