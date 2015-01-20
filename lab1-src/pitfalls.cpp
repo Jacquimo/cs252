@@ -204,6 +204,8 @@ void reverse(char *arr, int len) {
 }
 
 int main() {
+  // Test some of the functions in pitfalls.cpp so that I can also check for memory leaks in valgrind
+
   int v1[] = {4, 2, 9, 32, 5, 3};
   int v2[] = {10, 1, 4, 8, 2, 1};
 
