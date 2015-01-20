@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <cstring>
+#include <assert.h>
 
 
 /*This file contains a number of functions that contain
@@ -203,5 +204,25 @@ void reverse(char *arr, int len) {
 }
 
 int main() {
-  return 0;
+  int v1[] = {4, 2, 9, 32, 5, 3};
+  int v2[] = {10, 1, 4, 8, 2, 1};
+
+  int* v3 = add_vectors(v1, 6, v2, 6);
+  assert(*v3 == 14); assert(*(v3 + 1) == 3); assert(*(v3 + 2) == 13); assert(*(v3 + 3) == 40); 
+  assert(*(v3 + 4) == 7); assert(*(v3 + 5) == 4);
+  free(v3);
+
+  v3 = NULL;
+  v3 = add_vectors(v1, 6, v3, 0);
+  assert(v3 == NULL);
+
+  v3 = add_vectors(v1, 6, v2, 4);
+  assert(v3 == NULL);
+
+  ///////////////////////////////////////
+
+  v3 = divide_vectors(v1, v2, 6);
+  assert(*v3 == 0); assert(*(v3 + 1) == 2); assert(*(v3 + 2) == 2); assert(*(v3 + 3) == 4);
+  assert(*(v3 + 4) == 2); assert(*(v3 + 5) == 3);
+  delete[] v3;
 }
