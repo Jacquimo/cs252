@@ -177,16 +177,21 @@ void create_and_free(int rows, int cols) {
     arr[i] = new char[cols];
 
   //free memory
-  delete [] arr;
+  //delete [] arr;
   for(int i = 0; i < rows; i++)
     delete[] arr[i];
+  delete[] arr;
 }
 
 /*reverses a char array*/
 void reverse(char *arr, int len) {
   char *arr2 = new char[len];
-  if(len == 0 || len == 1) //no need to reverse
+  /*if(len == 0 || len == 1) //no need to reverse
+    delete[] arr2;*/
+  if (len <= 1) {
     delete[] arr2;
+    return;
+  }
   else {
     for(int i = 0 ; i < len; i++)
       arr2[i] = arr[i];
