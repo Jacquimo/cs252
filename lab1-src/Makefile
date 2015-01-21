@@ -32,7 +32,7 @@ CCFLAGS= -g -std=gnu99
 # The dependencies of "all" are the files that we want to build.
 #
 
-all: test_mystring test_list test_mysort test pitfalls
+all: test_mystring test_list test_mysort test pitfalls test_part2 target
 
 # Compile mystring.o if necessary
 mystring.o : mystring.c
@@ -91,6 +91,17 @@ pitfalls.o: pitfalls.cpp
 
 pitfalls: pitfalls.o
 	$(CXX) -o pitfalls pitfalls.o
+
+
+test_part2.o: test_part2.cpp
+	$(CXX) -c $(CCFLAGS) test_part2.cpp
+
+test_part2: test_part2.o
+	$(CXX) -o test_part2 test_part2.o
+
+
+target: target.c
+	gcc -g -fno-stack-protector -m32 target.c -o target
 
 
 clean:
