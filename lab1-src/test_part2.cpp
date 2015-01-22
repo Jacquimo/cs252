@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define MEM_UNKNOWN "unknown"
+#define MEM_STACK "stack"
+#define MEM_HEAP "heap"
+#define MEM_DATA "data"
+#define MEM_BSS "bss"
+#define MEM_TEXT "text"
+
 extern int etext, edata, end;
 
 void print_segment_locations();
@@ -37,16 +44,12 @@ int main() {
   report("array", getMemSection(&array));
   report("ptr1", getMemSection(ptr1));
   report("ptr2", getMemSection(ptr2));
+  report("MEM_DATA", getMemSection((void*)&(MEM_DATA)));
+  report("MEM_TEXT", getMemSection((void*)&(MEM_TEXT)));
 
   return 0;
 }
 
-#define MEM_UNKNOWN "unknown"
-#define MEM_STACK "stack"
-#define MEM_HEAP "heap"
-#define MEM_DATA "data"
-#define MEM_BSS "bss"
-#define MEM_TEXT "text"
 
 /*void report_results() {
   report("a", getMemSection(&a));
