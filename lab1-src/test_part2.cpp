@@ -63,6 +63,7 @@ int main() {
 }*/
 
 char* getMemSection(void* ptr) {
+  int a = 5;
   if (ptr < &etext)
     return MEM_TEXT;
   else if (ptr < &edata)
@@ -70,13 +71,11 @@ char* getMemSection(void* ptr) {
   else if (ptr < &end)
     return MEM_BSS;
   else {
-    char* test = (char*)malloc(sizeof(char));
     char* ret;
-    if (ptr <= test)
+    if (ptr < &a)
       ret = MEM_HEAP;
     else
       ret = MEM_STACK;
-    free(test);
     return ret;
   }
 }
