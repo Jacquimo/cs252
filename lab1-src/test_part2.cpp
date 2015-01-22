@@ -66,6 +66,11 @@ int main() {
 }*/
 
 char* getMemSection(void* ptr) {
+  // The following variable was declared so that the last data item placed on the stack is known.
+  // The variable 'a' should be the last item placed on the stack frame for this function call.
+
+  // Therefore, we can determine the boundary of the stack and know the memory ranges for
+  // the stack and the heap by checking the location of 'ptr' against the location of 'a'.
   int a = 5;
   if (ptr < &etext)
     return MEM_TEXT;
