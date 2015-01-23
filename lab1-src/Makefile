@@ -5,7 +5,7 @@
 # in a Makefile
 CC=gcc
 CXX=g++
-CCFLAGS= -g -std=gnu99
+CCFLAGS= -g 
 
 # A rule in Makefile has the form:
 #
@@ -36,7 +36,7 @@ all: test_mystring test_list test_mysort test pitfalls test_part2 target
 
 # Compile mystring.o if necessary
 mystring.o : mystring.c
-	$(CC) -c $(CCFLAGS) mystring.c
+	$(CC) -c $(CCFLAGS) -std=gnu99 mystring.c
 
 # Compile test_mystring.o if necessary
 test_mystring.o : test_mystring.c
