@@ -12,7 +12,7 @@ extern int etext, edata, end;
 
 void print_segment_locations();
 void report(const char *var, const char *section);
-char* getMemSection(void*);
+const char* getMemSection(void*);
 
 int a = 5; 
 int b; 
@@ -65,7 +65,7 @@ int main() {
 
 }*/
 
-char* getMemSection(void* ptr) {
+const char* getMemSection(void* ptr) {
   // The following variable was declared so that the last data item placed on the stack is known.
   // The variable 'a' should be the last item placed on the stack frame for this function call.
 
@@ -79,7 +79,7 @@ char* getMemSection(void* ptr) {
   else if (ptr < &end)
     return MEM_BSS;
   else {
-    char* ret;
+    const char* ret;
     if (ptr < &a)
       ret = MEM_HEAP;
     else
