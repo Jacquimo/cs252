@@ -105,5 +105,5 @@ target: target.c
 
 
 clean:
-	rm -f core *.o test_mystring test_list test_mysort test_results
+	rm -f core *.o test_mystring test_list test_mysort test pitfalls test_part2 target
 
