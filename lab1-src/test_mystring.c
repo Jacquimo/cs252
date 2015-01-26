@@ -99,6 +99,7 @@ main()
   assert(mystrcmp("abcd","dabc")<0);
   assert(mystrcmp("dab", "abcd")>0);
   assert(mystrcmp("dab", "dab")==0);
+  assert(mystrcmp("appleapple", "applebanana") < 0);
   printf("mystrcmp: pass\n");
 
 

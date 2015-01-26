@@ -1,6 +1,5 @@
 #include <sys/types.h>
 #include <stdlib.h>
-#include "string.h"
 
 /*
  * Implement the following string procedures.
@@ -67,6 +66,7 @@ char *mystrstr(char * s1, const char * s2)
 	if (*s2 == '\0')
 		return s1;
 
+	
 	for (int i = 0; *(s1 + i); ++i)
 		if (*(s1 + i) == *s2) {
 			int j = 0;
@@ -86,7 +86,7 @@ char *mystrstr(char * s1, const char * s2)
 }
 
 int mystrcmp(const char *s1, const char *s2) {
-	int i = 0;
+	/*int i = 0;
 	while (*(s1 + i) == *(s2 + i)) {
 		if (*(s1 + i) == '\0')
 			break;
@@ -95,6 +95,12 @@ int mystrcmp(const char *s1, const char *s2) {
 		++i;
 	}
 
-	return *s1 - *s2;
+	return *(s1 + i) - *(s2 + i);*/
+
+	int i = 0;
+	while(s1[i] && s2[i] && s1[i] == s2[i])
+		++i;
+
+	return (s1[i] - s2[i]) < 0 ? -1 : (s1[i] - s2[i]) == 0 ? 0 : 1;
 }
 
