@@ -1,0 +1,108 @@
+--------------------------------
+--------------------------------
+		THE PROCESS GAMES
+		   THE GRAPIST
+--------------------------------
+--------------------------------
+
+
+
+Author: Gray Houston
+Program: theGrapist.c
+
+--------------------------------
+INTRODUCTION
+
+This is the README for the CS 252 Lab 6: Process Games. The gladiator program that
+I created is called The Grapist. This is because the strategy that it uses is akin
+to graping the other processes in the mouth. The strategy of the program will be
+described below.
+
+
+--------------------------------
+BUILD INSTRUCTIONS
+
+	cd lab6
+	cd src
+	make all
+
+This set of commands will compile theGrapist.c file. The executable will be placed
+in the parent directory (with the gladiator executables and the arena executable).
+
+
+--------------------------------
+STRATEGY
+
+I refer to this strategy as the 'graping the mouth' strategy. It operates by reading
+the process information of the running processes and other processes by directly
+reading from the 'proc' virtual file system.
+
+The process starts by first reading the gpid of the executing process and the
+entering an infinite loop where the the very first action made is an attempt to
+fork. I avoid the expensive system call of having to override a signal handler by
+directly calling waitpid, and only if the fork succeeded. Then, the program will attempt to attack other processes.
+
+It will scan a range of 100 pid's: the 50 before the current process's and the 50
+after. This is a practical optimization. Because the OS scheduler will assign pids
+sequentially to new processes, the pids of the opponent's processes must be nearby.
+Therefore, to save time, only the 100 closest pid values will be checked and potentially read. This optimization has proven very effective at improving the
+performance of the program.
+
+For each potential pid that is covered, by the 100 pid range, the name and gpid is
+read from '/proc/$pid/stat'. If the name of the process does not match one of the
+few names on the whitelist (n.b. the program name is not hardcoded), the process
+will be killed. However, not only is the process killed, but the entire process
+group will be killed. This is done by sending SIGKILL to the gpid. Thereby, all
+children of that process will be killed.
+
+To prevent this same attack from occurring against me, I set the gpid of my current
+process to the gpid of the process that was just killed. Thereby, as soon as one of
+the child processes kills another process, this form of attack will no longer be
+useful.
+
+Furthermore, I will utilize the fact that I know the program name of my opponent
+and that at least 1 process has just been killed, as there will likely be a spot
+available for a call to fork() to succeed. Next, my program makes a call to
+system() with an input of the form "pkill -KILL $programName", where $programeName
+is the name of my opponents program. Because I have just killed one of their
+processes, this call will likely succeed. If the fork in the call to system()
+succeeds, then that opponent will lose. The pkill command executes fast enough that
+it is never removed from the CPU for a context switch and thereby successfully
+kills all instances of the opponent's program. My program has never lost when the
+call to system() succeeded, even against flash.
+
+Finally, again utilizing the fact that I have just opened up a slot for another
+process to form, I attempt to fork my current process.
+
+I decided not to use any form of inter-process communication as the necessary
+system calls would have significantly slowed down the speed of the program.
+Furthermore, since this is a 'blazing' strategy that attempts to send SIGKILL as
+fast as possible, my program would not have received much benefit from inter
+process coordination.
+
+
+
+--------------------------------
+PERFORMANCE
+
+My program performs very well against almost all of the test 'gladiator' programs
+provided. Except for 2 of the programs, my testing has shown The Grapist will always win against a single program or a group of the programs for all N number of
+processes.
+
+The first exception is the hitman program. The Grapist will always win in all
+combinations except when N=10, where my testing has shown that The Grapist will
+occasionally lose. Other than this case, my program has always performed very well
+against hitman.
+
+The other exception is the flash program. This is the only gladiator against which 
+The Grapist does not net win on average. My testing has shown that on average, in 
+single head-to-head combat, my program wins from about 1/4 to 1/2 of the time. I 
+did not have enough time to test The Grapist against flash when there were other 
+combatants in the arena.
+
+
+
+
+
+
+
