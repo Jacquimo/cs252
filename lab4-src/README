@@ -1,0 +1,13 @@
+############
+Gray Houston
+############
+
+Part 1:
+	3-4.) In sections 3 and 4 (regarding thr1.cc), the output was an infinte output of letters ranging from [A-C] for section 3 and [A-E] for section 4. The program could only be ended with a killing signal (such as SIGINT or SIGKILL). The output of thr1.cc would be variable length sequences of the same character and then become a sequence of a different character. The time when the sequence of letters changed from one character to another represents when the operating system performs a context switch and starts (or continues) running a different thread.
+
+	5.) In section 5 (regarding thr2.cc), the output is an infite print of only the character 'C' because of the order of method calls and where in the code the new threads will begin. Because the "printC" method is invoked first, the program, which is currently just a single thread, enters the infinite loop within "printC" before any of the threads are actually created and run. Because the program enters the inifinite loop first, no other threads can every be created, and therefore on the character 'C' is printed.
+
+Part 2:
+	
+
+
